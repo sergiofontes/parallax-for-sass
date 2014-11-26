@@ -1,0 +1,125 @@
+/*
+------------------------------------
+  # Parallax
+    http://keithclark.co.uk/articles/pure-css-parallax-websites/
+------------------------------------
+*/
+
+// Variables
+//———————————
+
+$perspective: 300px;
+$z-levels: 5;
+$z-depth: 180px;
+
+// Mixin
+//————————
+
+@mixin parallax-depth($z-axis) {
+  $part: ($z-depth * 2) / ($z-levels - 1);
+  $depth: - $z-depth + ($part * ($z-axis - 1));
+  $scale: 1 + ($depth * -1) / $perspective;
+  -webkit-transform: translateZ($depth) scale($scale);
+  -moz-transform: translateZ($depth) scale($scale);
+  transform: translateZ($depth) scale($scale);
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  transform-origin: center center;
+  z-index: $z-axis;
+}
+
+// SCSS
+//——————
+
+.parallax {
+  -webkit-perspective: $perspective;
+  -moz-perspective: $perspective;
+  perspective: $perspective;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  height: 1000px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-width: 1064px; // Prevents layout from being overflowed.
+  width: 100%;
+  z-index: 1;
+}
+
+.parallax-group {
+  position: relative;
+  height: 1000px;    // Each `.parallax-group` must have a fixed height.
+  height: 100vh;     // Watch out for responsive versions.
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+%parallax-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.parallax-front-two {
+  @extend %parallax-layer;
+  @include parallax-depth(5);
+}
+
+.parallax-front-one {
+  @extend %parallax-layer;
+  @include parallax-depth(4);
+}
+
+.parallax-base {
+  @extend %parallax-layer;
+  @include parallax-depth(3);
+}
+
+.parallax-back-one {
+  @extend %parallax-layer;
+  @include parallax-depth(2);
+}
+
+.parallax-back-two {
+  @extend %parallax-layer;
+  @include parallax-depth(1);
+}
+
+// Debug
+//——————————
+
+// .parallax-group {
+//   -webkit-transform: translate3d(700px, 0, -800px) rotateY(30deg);
+//   -moz-transform: translate3d(700px, 0, -800px) rotateY(30deg);
+//   transform: translate3d(700px, 0, -800px) rotateY(30deg);
+// }
+
+// IE Fix
+//——————————
+
+html[class*="ie"] {
+  body {
+    .parallax {
+      perspective: none;
+      height: auto;
+
+      .parallax-group {
+        transform-style: none;
+      }
+
+      .parallax-layer {
+        &.parallax-back-two,
+        &.parallax-back-one,
+        &.parallax-base,
+        &.parallax-front-one,
+        &.parallax-front-two {
+          -ms-transform: translateZ(0) scale(1) !important;
+          transform: translateZ(0) scale(1) !important;
+        }
+      }
+    }
+  }
+}

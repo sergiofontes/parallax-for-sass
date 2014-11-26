@@ -1,4 +1,4 @@
-parallax-for-sass
+Parallax for SASS
 =================
 
-Pure CSS Parallax.
+Based on [Keith Clark](http://keithclark.co.uk/articles/pure-css-parallax-websites/)'s article.
