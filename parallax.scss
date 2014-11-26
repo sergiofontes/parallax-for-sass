@@ -10,7 +10,7 @@
 
 $perspective: 300px;
 $z-levels: 5;
-$z-depth: 180px;
+$z-depth: 180px;   // Cannot be greater than `$perspective`.
 
 // Mixin
 //————————
