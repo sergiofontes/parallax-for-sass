@@ -1,19 +1,19 @@
 /*
-------------------------------------
+----------------------------------------------------------------
   # Parallax
     http://keithclark.co.uk/articles/pure-css-parallax-websites/
-------------------------------------
+----------------------------------------------------------------
 */
 
-// Variables
-//———————————
+// ## Variables
+//---------------
 
 $perspective: 300px;
-$z-levels: 5;
-$z-depth: 180px;   // Cannot be greater than `$perspective`.
+$z-levels: 5; // Must be an odd number.
+$z-depth: 180px; // Cannot be greater than `$perspective`.
 
-// Mixin
-//————————
+// ## Mixin
+//-----------
 
 @mixin parallax-depth($z-axis) {
   $part: ($z-depth * 2) / ($z-levels - 1);
@@ -21,15 +21,15 @@ $z-depth: 180px;   // Cannot be greater than `$perspective`.
   $scale: 1 + ($depth * -1) / $perspective;
   -webkit-transform: translate3d(0,0,$depth) scale($scale);
   -moz-transform: translate3d(0,0,$depth) scale($scale);
-  transform: translate3d(0,0,$depth) scale($scale);
+  transform: translate3d(0,0,$depth) scale($scale); // Enables GPU.
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
   transform-origin: center center;
   z-index: $z-axis;
 }
 
-// SCSS
-//——————
+// ## SCSS
+//----------
 
 .parallax {
   -webkit-perspective: $perspective;
@@ -48,8 +48,8 @@ $z-depth: 180px;   // Cannot be greater than `$perspective`.
 
 .parallax-group {
   position: relative;
-  height: 1000px;    // Each `.parallax-group` must have a fixed height.
-  height: 100vh;     // Watch out for responsive versions.
+  height: 1000px; // Each `.parallax-group` must have a fixed height. Watch out for dinamic heights.
+  height: 100vh;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -63,42 +63,42 @@ $z-depth: 180px;   // Cannot be greater than `$perspective`.
   left: 0;
 }
 
-.parallax-front-two {
+.parallax-layer-front-five {
   @extend %parallax-layer;
   @include parallax-depth(5);
 }
 
-.parallax-front-one {
+.parallax-layer-front-four {
   @extend %parallax-layer;
   @include parallax-depth(4);
 }
 
-.parallax-base {
+.parallax-layer-base {
   @extend %parallax-layer;
   @include parallax-depth(3);
 }
 
-.parallax-back-one {
+.parallax-layer-back-two {
   @extend %parallax-layer;
   @include parallax-depth(2);
 }
 
-.parallax-back-two {
+.parallax-layer-back-one {
   @extend %parallax-layer;
   @include parallax-depth(1);
 }
 
-// Debug
-//——————————
+// ## Debug
+//-----------
 
 // .parallax-group {
-//   -webkit-transform: translate3d(700px, 0, -800px) rotateY(30deg);
-//   -moz-transform: translate3d(700px, 0, -800px) rotateY(30deg);
-//   transform: translate3d(700px, 0, -800px) rotateY(30deg);
+//   -webkit-transform: translate3d(700px,0,-800px) rotateY(30deg);
+//   -moz-transform: translate3d(700px,0,-800px) rotateY(30deg);
+//   transform: translate3d(700px,0,-800px) rotateY(30deg);
 // }
 
-// IE Fix
-//——————————
+// ## IE Fix
+//------------
 
 html[class*="ie"] {
   body {
@@ -109,13 +109,13 @@ html[class*="ie"] {
       .parallax-group {
         transform-style: none;
 
-        .parallax-back-two,
-        .parallax-back-one,
-        .parallax-base,
-        .parallax-front-one,
-        .parallax-front-two {
+        .parallax-layer-front-five,
+        .parallax-layer-front-four,
+        .parallax-layer-base,
+        .parallax-layer-back-two,
+        .parallax-layer-back-one {
           -ms-transform: translate3d(0,0,0) scale(1) !important;
-          transform: translateZ(0,0,0) scale(1) !important;
+          transform: translate3d(0,0,0) scale(1) !important;
         }
       }
     }
