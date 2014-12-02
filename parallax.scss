@@ -19,9 +19,9 @@ $z-depth: 180px;   // Cannot be greater than `$perspective`.
   $part: ($z-depth * 2) / ($z-levels - 1);
   $depth: - $z-depth + ($part * ($z-axis - 1));
   $scale: 1 + ($depth * -1) / $perspective;
-  -webkit-transform: translateZ($depth) scale($scale);
-  -moz-transform: translateZ($depth) scale($scale);
-  transform: translateZ($depth) scale($scale);
+  -webkit-transform: translate3d(0,0,$depth) scale($scale);
+  -moz-transform: translate3d(0,0,$depth) scale($scale);
+  transform: translate3d(0,0,$depth) scale($scale);
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
   transform-origin: center center;
@@ -108,16 +108,14 @@ html[class*="ie"] {
 
       .parallax-group {
         transform-style: none;
-      }
 
-      .parallax-layer {
-        &.parallax-back-two,
-        &.parallax-back-one,
-        &.parallax-base,
-        &.parallax-front-one,
-        &.parallax-front-two {
-          -ms-transform: translateZ(0) scale(1) !important;
-          transform: translateZ(0) scale(1) !important;
+        .parallax-back-two,
+        .parallax-back-one,
+        .parallax-base,
+        .parallax-front-one,
+        .parallax-front-two {
+          -ms-transform: translate3d(0,0,0) scale(1) !important;
+          transform: translateZ(0,0,0) scale(1) !important;
         }
       }
     }
