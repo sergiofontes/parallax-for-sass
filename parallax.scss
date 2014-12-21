@@ -8,7 +8,7 @@
 // ## Variables
 //---------------
 
-//    This effect is achieved by three basic layers, which structure are:
+//    This effect is achieved by three basic layers, which structure is:
 //  ```body                    -
 //       .parallax             - $perspective (the depth of the layout).
 //         .parallax-group     - The relative container; sets the height.
@@ -18,7 +18,7 @@
 //             ```
 
 $perspective: 300px;
-$z-levels: 5;    // They must be an odd number at total because the middle is at the zero depth level.
+$z-levels: 5;    // It must be an odd number because of middle number, which is at the zero depth level.
 $z-depth: 180px; // Cannot be greater than `$perspective`.
 
 // ## Mixin
@@ -44,6 +44,7 @@ $z-depth: 180px; // Cannot be greater than `$perspective`.
   -webkit-perspective: $perspective;
   -moz-perspective: $perspective;
   perspective: $perspective;
+  // -webkit-overflow-scrolling: touch; // Allows smooth scrolling on mobile devices but disables parallax effects.
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   height: 1000px;
