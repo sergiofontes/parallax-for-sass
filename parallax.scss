@@ -8,8 +8,17 @@
 // ## Variables
 //---------------
 
+//    This effect is achieved by three basic layers, which structure are:
+//  ```body                    -
+//       .parallax             - $perspective (the depth of the layout).
+//         .parallax-group     - The relative container; sets the height.
+//           .parallax-layer   - Transforms the layer accordingly to a depth position in a tridimensional level; 
+//                               The tridimensional level must be an interger number of $z-levels.
+//                               Sets the top position from it's parent.
+//             ```
+
 $perspective: 300px;
-$z-levels: 5; // Must be an odd number.
+$z-levels: 5;    // They must be an odd number at total because the middle is at the zero depth level.
 $z-depth: 180px; // Cannot be greater than `$perspective`.
 
 // ## Mixin
@@ -66,26 +75,31 @@ $z-depth: 180px; // Cannot be greater than `$perspective`.
 .parallax-layer-front-five {
   @extend %parallax-layer;
   @include parallax-depth(5);
+  // top: x;
 }
 
 .parallax-layer-front-four {
   @extend %parallax-layer;
   @include parallax-depth(4);
+  // top: x;
 }
 
 .parallax-layer-base {
   @extend %parallax-layer;
   @include parallax-depth(3);
+  // top: x;
 }
 
 .parallax-layer-back-two {
   @extend %parallax-layer;
   @include parallax-depth(2);
+  // top: x;
 }
 
 .parallax-layer-back-one {
   @extend %parallax-layer;
   @include parallax-depth(1);
+  // top: x;
 }
 
 // ## Debug
