@@ -5,13 +5,12 @@
 ----------------------------------------------------------------
 */
 
-//  ```body                    -
-//       .parallax             - $perspective (the depth of the layout).
-//         .parallax-group     - The relative container; sets the height.
-//           .parallax-layer   - Transforms the layer according to a depth position in a tridimensional level; 
-//                               The tridimensional level must be an interger number of $z-levels.
-//                               Sets the top position from it's parent.
-//             ```
+//  body                  -
+//    .parallax           - $perspective (the depth of the layout).
+//      .parallax-group   - The relative container; sets the height.
+//        .parallax-layer - Transforms the layer according to a depth position in a tridimensional level; 
+//                          The tridimensional level must be an interger number of $z-levels.
+//                          Sets the top position from it's parent.```
 
 // ## Variables
 //---------------
