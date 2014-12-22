@@ -5,17 +5,16 @@
 ----------------------------------------------------------------
 */
 
-// ## Variables
-//---------------
-
-//    This effect is achieved by three basic layers, which structure is:
 //  ```body                    -
 //       .parallax             - $perspective (the depth of the layout).
 //         .parallax-group     - The relative container; sets the height.
-//           .parallax-layer   - Transforms the layer accordingly to a depth position in a tridimensional level; 
+//           .parallax-layer   - Transforms the layer according to a depth position in a tridimensional level; 
 //                               The tridimensional level must be an interger number of $z-levels.
 //                               Sets the top position from it's parent.
 //             ```
+
+// ## Variables
+//---------------
 
 $perspective: 300px;
 $z-levels: 5;    // It must be an odd number because of middle number, which is at the zero depth level.
@@ -58,8 +57,7 @@ $z-depth: 180px; // Cannot be greater than `$perspective`.
 
 .parallax-group {
   position: relative;
-  height: 1000px; // Each `.parallax-group` must have a fixed height. Watch out for dinamic heights.
-  height: 100vh;
+  height: 1000px; // 🃏 Each `.parallax-group` must have a fixed height. Watch out for dinamic heights.
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -73,34 +71,39 @@ $z-depth: 180px; // Cannot be greater than `$perspective`.
   left: 0;
 }
 
-.parallax-layer-front-five {
+.parallax-layer-front-five,
+.parallax-layer-five {
   @extend %parallax-layer;
   @include parallax-depth(5);
-  // top: x;
+  // top: x; // 🃏
 }
 
-.parallax-layer-front-four {
+.parallax-layer-front-four,
+.parallax-layer-four {
   @extend %parallax-layer;
   @include parallax-depth(4);
-  // top: x;
+  // top: x; // 🃏
 }
 
-.parallax-layer-base {
+.parallax-layer-base,
+.parallax-layer-three {
   @extend %parallax-layer;
   @include parallax-depth(3);
-  // top: x;
+  // top: x; // 🃏
 }
 
-.parallax-layer-back-two {
+.parallax-layer-back-two,
+.parallax-layer-two {
   @extend %parallax-layer;
   @include parallax-depth(2);
-  // top: x;
+  // top: x; // 🃏
 }
 
-.parallax-layer-back-one {
+.parallax-layer-back-one,
+.parallax-layer-one {
   @extend %parallax-layer;
   @include parallax-depth(1);
-  // top: x;
+  // top: x; // 🃏
 }
 
 // ## Debug
@@ -125,10 +128,15 @@ html[class*="ie"] {
         transform-style: none;
 
         .parallax-layer-front-five,
+        .parallax-layer-five,
         .parallax-layer-front-four,
+        .parallax-layer-four,
         .parallax-layer-base,
+        .parallax-layer-three,
         .parallax-layer-back-two,
-        .parallax-layer-back-one {
+        .parallax-layer-two,
+        .parallax-layer-back-one,
+        .parallax-layer-one {
           -ms-transform: translate3d(0,0,0) scale(1) !important;
           transform: translate3d(0,0,0) scale(1) !important;
         }
